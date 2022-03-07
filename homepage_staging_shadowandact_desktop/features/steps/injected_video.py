@@ -73,10 +73,11 @@ def verify_pic_in_pic_window(driver):
     WebDriverWait(driver, 20).until(ec.presence_of_element_located((
         By.XPATH,
         "//div[@class='jw-overlays jw-reset']")))
-    pic_in_pic_player_window = driver.find_elements(By.XPATH, "//div[@class='jw-overlays jw-reset']")
-    if len(pic_in_pic_player_window) > 0:
+    pic_in_pic_player_window_chk = driver.find_elements(By.XPATH, "//div[@class='jw-overlays jw-reset']")
+    if len(pic_in_pic_player_window_chk) > 0:
         print("pic in pic floating window on page scroll of injected video is present")
     else:
+        pic_in_pic_player_window = driver.find_element(By.XPATH, "//div[@class='jw-overlays jw-reset']")
         assert \
             pic_in_pic_player_window.is_displayed(), \
             "pic in pic jw player floating window is not present for injected video for article :" + driver.title
@@ -90,15 +91,21 @@ def verify_read_full_article(driver):
     actions = ActionChains(driver)
     actions.move_to_element(read_full_article_btn).perform()
     read_full_article_btn.click()
-    author = driver.find_elements(
+    author_chk = driver.find_elements(
         By.XPATH,
         "(//div[@class='sa-article__meta sa-article__meta--bottom d-flex align-items-center font-secondary'])[1]")
-    if len(author) > 0:
+    if len(author_chk) > 0:
         WebDriverWait(driver, 20).until(ec.presence_of_element_located((
             By.XPATH,
             "(//div[@class='sa-article__meta sa-article__meta--bottom d-flex align-items-center font-secondary'])[1]")))
+        author = driver.find_element(
+            By.XPATH,
+            "(//div[@class='sa-article__meta sa-article__meta--bottom d-flex align-items-center font-secondary'])[1]")
         actions = ActionChains(driver)
         actions.move_to_element(author).perform()
     else:
+        author = driver.find_element(
+            By.XPATH,
+            "(//div[@class='sa-article__meta sa-article__meta--bottom d-flex align-items-center font-secondary'])[1]")
         assert author.is_displayed(), "On Clicking Read Full Article button, Author is not displayed for article "+driver.title
 
