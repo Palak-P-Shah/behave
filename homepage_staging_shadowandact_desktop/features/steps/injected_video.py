@@ -39,9 +39,15 @@ def verify_injected_video(driver):
     actions.move_to_element(adv_and_video_container).perform()
     WebDriverWait(driver, 15).until(ec.presence_of_element_located((
         By.XPATH, "//video[@class='jw-video jw-reset']")))
-    video = driver.find_element(By.XPATH, "//video[@class='jw-video jw-reset']")
-    # time.sleep(5)
-    assert video.is_displayed(), "Video does not Autoplay when in view"
+    video_chk = driver.find_elements(By.XPATH, "//video[@class='jw-video jw-reset']")
+    if len(video_chk) > 0:
+        print("in if")
+        video = driver.find_element(By.XPATH, "//video[@class='jw-video jw-reset']")
+        assert video.is_displayed(), "Video does not Autoplay when in view"
+    else:
+        print("in else")
+        video = driver.find_element(By.XPATH, "//video[@class='jw-video jw-reset']")
+        assert not video.is_displayed(), "Video does not Autoplay when in view"
     injected_video = driver.find_element(
         By.XPATH,
         "(//div[@class='jwplayer image-wrapper image-wrapper--16x9'])[1]")
