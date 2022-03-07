@@ -51,11 +51,11 @@ def verify_injected_video(driver):
         By.XPATH, "//video[@class='jw-video jw-reset']")))
     WebDriverWait(driver, 10).until(ec.presence_of_element_located((
         By.XPATH, "//div[@class='jw-icon jw-icon-inline jw-button-color jw-reset jw-icon-playback']")))
-    within_video_adv = driver.find_element(
+    within_video_adv = driver.find_elements(
         By.XPATH, "//div[@class='videoAdUiAutoClose']")
     # actions = ActionChains(driver)
     # actions.move_to_element(within_video_adv).perform()
-    assert within_video_adv.is_displayed(), "Injected Video does not Autoplay when in view"
+    assert within_video_adv[0].is_displayed(), "Injected Video does not Autoplay when in view"
 
     # play_btn = driver.find_elements(
     #     By.XPATH,
