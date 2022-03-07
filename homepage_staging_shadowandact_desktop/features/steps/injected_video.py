@@ -95,14 +95,7 @@ def verify_read_full_article(driver):
         By.XPATH,
         "(//div[@class='sa-article__meta sa-article__meta--bottom d-flex align-items-center font-secondary'])[1]")
     if len(author_chk) > 0:
-        WebDriverWait(driver, 20).until(ec.presence_of_element_located((
-            By.XPATH,
-            "(//div[@class='sa-article__meta sa-article__meta--bottom d-flex align-items-center font-secondary'])[1]")))
-        author = driver.find_element(
-            By.XPATH,
-            "(//div[@class='sa-article__meta sa-article__meta--bottom d-flex align-items-center font-secondary'])[1]")
-        actions = ActionChains(driver)
-        actions.move_to_element(author).perform()
+        print("Read Full Article Button working as expected")
     else:
         author = driver.find_element(
             By.XPATH,
