@@ -18,45 +18,47 @@ def load_initial_article_of_most_popular(driver):
 
 def verify_injected_video(driver):
     print("function called verify_injected_video")
-    # wait till the time main video screen is available
     WebDriverWait(driver, 15).until(ec.presence_of_element_located((
         By.XPATH, "(//div[@class='jwplayer image-wrapper image-wrapper--16x9'])[1]")))
-    # wait till the time jw player of the main video screen is available
+
+    # WebDriverWait(driver, 15).until(ec.presence_of_element_located((
+    #     By.XPATH, "(//div[@class='jwplayer image-wrapper image-wrapper--16x9']//div[@class='img']/div[1])[1]")))
+    # blank_img = driver.find_element(
+    #     By.XPATH,
+    #     "(//div[@class='jwplayer image-wrapper image-wrapper--16x9']//div[@class='img']/div[1])[1]")
+    # driver.execute_script("arguments[0].scrollIntoView();", blank_img)
+    # time.sleep(5)
+    # assert blank_img.is_displayed(), "Injected Video is not loaded for this article"
+
     WebDriverWait(driver, 15).until(ec.presence_of_element_located((
         By.XPATH, "//div[@class='jw-media jw-reset']")))
-    # look for container element having video and adv
     adv_and_video_container = driver.find_element(
         By.XPATH,
         "//div[@class='jw-media jw-reset']")
-    # move to the container element having video and adv
     actions = ActionChains(driver)
     actions.move_to_element(adv_and_video_container).perform()
-    # wait for the video to be present
     WebDriverWait(driver, 15).until(ec.presence_of_element_located((
         By.XPATH, "//video[@class='jw-video jw-reset']")))
     video_chk = driver.find_elements(By.XPATH, "//video[@class='jw-video jw-reset']")
-    # check for the video to be present
     if len(video_chk) > 0:
-        # if video is present
-        print("video is present")
-    else:
-        print("video not present")
+        print("in if")
         video = driver.find_element(By.XPATH, "//video[@class='jw-video jw-reset']")
         assert video.is_displayed(), "Video does not Autoplay when in view"
-    # move to the video
+    else:
+        print("in else")
+        video = driver.find_element(By.XPATH, "//video[@class='jw-video jw-reset']")
+        assert not video.is_displayed(), "Video does not Autoplay when in view"
     injected_video = driver.find_element(
         By.XPATH,
         "(//div[@class='jwplayer image-wrapper image-wrapper--16x9'])[1]")
     actions = ActionChains(driver)
     actions.move_to_element(injected_video).perform()
-    # wait till the time video auto plays when in view
     WebDriverWait(driver, 10).until(ec.presence_of_element_located((
         By.XPATH, "//video[@class='jw-video jw-reset']")))
     WebDriverWait(driver, 10).until(ec.presence_of_element_located((
         By.XPATH, "//div[@class='jw-icon jw-icon-inline jw-button-color jw-reset jw-icon-playback']")))
     within_video_adv = driver.find_elements(
         By.XPATH, "//div[@class='videoAdUiAutoClose']")
-    # check till the time video auto plays when in view
     if len(within_video_adv) > 0:
         print("image Adv present in injected video")
         actions = ActionChains(driver)
