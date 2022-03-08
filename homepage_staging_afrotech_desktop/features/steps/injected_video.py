@@ -6,14 +6,13 @@ def load_initial_article_of_most_popular(driver):
     print("function called load_initial_article_of_most_popular")
     initial_article = driver.find_element(
         By.XPATH,
-        "//div[@class='bg-white flex-full']//ol//li[1]//a//span")
-    # actions = ActionChains(driver)
-    # actions.move_to_element(initial_article).perform()
-    driver.execute_script("arguments[0].scrollIntoView();", initial_article)
+        "//div[@class='home__mid__container']//aside//div[2]//ol//li[1]//a//span")
+    actions = ActionChains(driver)
+    actions.move_to_element(initial_article).perform()
+    # driver.execute_script("arguments[0].scrollIntoView();", initial_article)
     title = initial_article.text
+    post_page_load_pop_up(driver)
     initial_article.click()
-    WebDriverWait(driver, 40).until(ec.presence_of_element_located((
-        By.XPATH, "html/head/title")))
     WebDriverWait(driver, 40).until(ec.title_is(title+" - AfroTech"))
 
 
@@ -67,13 +66,15 @@ def verify_injected_video(driver):
 
 def verify_pic_in_pic_window(driver):
     body = driver.find_element(By.CSS_SELECTOR, "body")
-    body.send_keys(Keys.PAGE_DOWN)
+    body.send_keys(Keys.PAGE_UP)
     print("page scrolled down once")
     WebDriverWait(driver, 20).until(ec.presence_of_element_located((
         By.XPATH,
         "//div[@class='jw-overlays jw-reset']")))
     pic_in_pic_player_window_chk = driver.find_elements(By.XPATH, "//div[@class='jw-overlays jw-reset']")
     if len(pic_in_pic_player_window_chk) > 0:
+        pic_in_pic_player_window = driver.find_element(By.XPATH, "//div[@class='jw-overlays jw-reset']")
+        assert pic_in_pic_player_window.is_displayed(), "pic in pic floating jw player is not displayed"
         print("pic in pic floating window on page scroll of injected video is present")
     else:
         pic_in_pic_player_window = driver.find_element(By.XPATH, "//div[@class='jw-overlays jw-reset']")

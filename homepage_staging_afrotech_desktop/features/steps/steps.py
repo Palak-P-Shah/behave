@@ -41,9 +41,7 @@ def step_impl(context):
 
 @then('navigate to and load the initial article from most popular section of the home page')
 def step_impl(context):
-    post_page_load_pop_up(context.browser)
     load_initial_article_of_most_popular(context.browser)
-    post_page_load_pop_up(context.browser)
 
 
 @then('verify if the injected video is auto playing')
