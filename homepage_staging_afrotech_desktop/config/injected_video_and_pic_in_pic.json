@@ -3,7 +3,7 @@
   "key": "s2rqmyxFs8r999bzvGXJ",
 
   "capabilities": {
-    "build": "test build for injected video and pic in pic for staging.shadowandact.com app",
+    "build": "test build for injected video and pic in pic for staging.afrotech.com app",
     "name": "behave-browserstack",
     "browserstack.debug": true
   },

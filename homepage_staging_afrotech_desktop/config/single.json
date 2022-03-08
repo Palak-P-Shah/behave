@@ -3,8 +3,8 @@
   "key": "s2rqmyxFs8r999bzvGXJ",
 
   "capabilities": {
-    "build": "test build for injected video and pic in pic for staging.shadowandact.com app",
-    "name": "behave-browserstack",
+    "build": "behave-browserstack",
+    "name": "single_test",
     "browserstack.debug": true
   },
 

@@ -50,7 +50,7 @@ def before_feature(context, feature):
         'os_version': '10',
         'browser': 'chrome',
         'browser_version': 'latest',
-        'name': 'BStack-[Jenkins] behave sample Test Build for injected video and pic in pic for staging.blavity.com app',  # test name
+        'name': 'BStack-[Jenkins] behave sample Test Build for injected video and pic in pic for staging.afrotech.com app',  # test name
         'build': build_name,  # CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
         'browserstack.user': username,
         'browserstack.key': access_key
