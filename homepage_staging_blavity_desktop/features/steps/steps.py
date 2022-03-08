@@ -39,9 +39,9 @@ def step_impl(context):
     launch_browser_and_app(context.browser)
 
 
-@then('navigate to and load the initial article from most popular section of the home page')
+@then('navigate to and load the initial article from top stories section of the home page')
 def step_impl(context):
-    load_initial_article_of_most_popular(context.browser)
+    load_initial_article_of_top_stories(context.browser)
 
 
 @then('verify if the injected video is auto playing')
