@@ -44,14 +44,18 @@ def before_feature(context, feature):
     username = os.getenv("BROWSERSTACK_USERNAME")
     access_key = os.getenv("BROWSERSTACK_ACCESS_KEY")
     build_name = os.getenv("BROWSERSTACK_BUILD_NAME")
+    desired_capabilities = CONFIG['environments'][TASK_ID]
+    for key in CONFIG["capabilities"]:
+        if key not in desired_capabilities:
+            desired_capabilities[key] = CONFIG["capabilities"][key]
 
     desired_capabilities = {
-        'os': 'Windows',
-        'os_version': '10',
-        'browser': 'chrome',
-        'browser_version': 'latest',
-        'name': 'BStack-[Jenkins] behave sample Test Build for injected video and pic in pic for 21ninety.com app',  # test name
-        'build': build_name,  # CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
+        # 'os': 'Windows',
+        # 'os_version': '10',
+        # 'browser': 'chrome',
+        # 'browser_version': 'latest',
+        # 'name': 'BStack-[Jenkins] behave sample Test Build for injected video and pic in pic for 21ninety.com app',  # test name
+        # 'build': build_name,  # CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
         'browserstack.user': username,
         'browserstack.key': access_key
     }
