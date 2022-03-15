@@ -23,7 +23,7 @@ bs_local = None
 
 BROWSERSTACK_USERNAME = os.environ['BROWSERSTACK_USERNAME'] if 'BROWSERSTACK_USERNAME' in os.environ else CONFIG['user']
 BROWSERSTACK_ACCESS_KEY = os.environ['BROWSERSTACK_ACCESS_KEY'] if 'BROWSERSTACK_ACCESS_KEY' in os.environ else CONFIG['key']
-
+BROWSERSTACK_BUILD_NAME = os.environ['BROWSERSTACK_BUILD_NAME'] if 'BROWSERSTACK_BUILD_NAME' in os.environ else CONFIG['build']
 
 def start_local():
     """Code to start browserstack local before start of test."""
@@ -45,25 +45,35 @@ def before_feature(context, feature):
     access_key = os.getenv("BROWSERSTACK_ACCESS_KEY")
     build_name = os.getenv("BROWSERSTACK_BUILD_NAME")
     desired_capabilities = CONFIG['environments'][TASK_ID]
+    # desired_capabilities = CONFIG['capabilities']
+
+    # this step sets the value of attribute from respective config file key and value pair
     for key in CONFIG["capabilities"]:
         if key not in desired_capabilities:
             desired_capabilities[key] = CONFIG["capabilities"][key]
+    # this step sets the value of 'build' attribute required for jenkins report generation
+    desired_capabilities['build'] = BROWSERSTACK_BUILD_NAME
 
-    desired_capabilities = {
-        # 'os': 'Windows',
-        # 'os_version': '10',
-        # 'browser': 'chrome',
-        # 'browser_version': 'latest',
-        # 'name': 'BStack-[Jenkins] behave sample Test Build for injected video and pic in pic for 21ninety.com app',  # test name
-        'build': build_name,  # CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
-        'browserstack.user': username,
-        'browserstack.key': access_key
-    }
+    # desired_capabilities = {
+    #     # 'os': 'Windows',
+    #     # 'os_version': '10',
+    #     # 'browser': 'chrome',
+    #     # 'browser_version': 'latest',
+    #     # 'name': 'BStack-[Jenkins] behave sample Test Build for injected video and pic in pic for 21ninety.com app',  # test name
+    #     # 'os_version': CONFIG["capabilities"],
+    #     # 'browser': CONFIG["capabilities"],
+    #     'build': build_name,  # CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
+    #     'browserstack.user': username,
+    #     'browserstack.key': access_key
+    # }
 
     context.browser = webdriver.Remote(
         desired_capabilities=desired_capabilities,
-        command_executor="http://%s:%s@hub.browserstack.com/wd/hub" % (BROWSERSTACK_USERNAME, BROWSERSTACK_ACCESS_KEY)
+        command_executor="http://%s:%s@hub.browserstack.com/wd/hub" %
+            (BROWSERSTACK_USERNAME, BROWSERSTACK_ACCESS_KEY)
     )
+    print("desired_capabilities ", desired_capabilities)
+    print("context.browser.desired_capabilities ", context.browser.desired_capabilities)
 
 
 def after_feature(context, feature):

@@ -60,7 +60,8 @@ def before_feature(context, feature):
         desired_capabilities=desired_capabilities,
         command_executor="http://%s:%s@hub.browserstack.com/wd/hub" % (BROWSERSTACK_USERNAME, BROWSERSTACK_ACCESS_KEY)
     )
-
+    print("desired_capabilities ", desired_capabilities)
+    print("context.browser.desired_capabilities ", context.browser.desired_capabilities)
 
 def after_feature(context, feature):
     if context.failed is True:

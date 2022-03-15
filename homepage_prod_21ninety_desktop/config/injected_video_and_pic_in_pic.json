@@ -1,17 +1,23 @@
 {
   "user": "palakshah_rcAxD5",
   "key": "s2rqmyxFs8r999bzvGXJ",
+  "build_name": "behave-browserstack",
+  "build": "test build for injected video and pic in pic for 21ninety.com app on windows desktop chrome",
 
   "capabilities": {
+    "browserstack.user" : "palakshah_rcAxD5",
+    "browserstack.key" : "s2rqmyxFs8r999bzvGXJ",
+    "project": "Behave Windows 10 Desktop Project",
     "os": "Windows",
     "os_version": "10",
     "resolution": "1920x1080",
     "browserstack.local": "false",
     "browser": "chrome",
     "browser_version": "94.0",
-    "build": "test build for injected video and pic in pic for 21ninety.com app on desktop windows chrome",
     "name": "behave-browserstack",
-    "browserstack.debug": true
+    "browserstack.debug": true,
+    "build_name": "behave-browserstack",
+    "build": "test build for injected video and pic in pic for 21ninety.com app on windows desktop chrome"
   },
 
   "environments": [{
