@@ -20,6 +20,12 @@ def launch_browser_and_app(driver):
     print(driver.title)
 
 
+def launch_browser_and_app_mobile(driver):
+    driver.get(url_name)
+    time.sleep(2)
+    print(driver.title)
+
+
 def post_page_load_pop_up(driver):
     try:
         event_promo_pop_up = driver.find_element_by_xpath(
@@ -30,3 +36,34 @@ def post_page_load_pop_up(driver):
     footer_xpath = driver.find_element(By.XPATH, "//button[text()='Accept']")
     driver.execute_script("arguments[0].click();", footer_xpath)
     assert driver.title == "21Ninety", "title does not match"
+
+
+def post_page_load_pop_up_mobile(driver):
+    try:
+        event_promo_pop_up = driver.find_element(
+            By.XPATH,
+            "//div[@class='ub-emb-iframe-wrapper ub-emb-mobile ub-emb-visible']"
+            "//button[@type='button'][normalize-space()='×']")
+        driver.execute_script("arguments[0].click();", event_promo_pop_up)
+    except NoSuchElementException:
+        print("event promo pop-up does not exist")
+    footer_xpath = driver.find_element(By.XPATH, "//button[text()='Accept']")
+    driver.execute_script("arguments[0].click();", footer_xpath)
+    assert driver.title == "21Ninety", "title does not match"
+
+
+def post_page_load_pop_up_mobile_ios(driver):
+    try:
+        event_promo_pop_up = driver.find_element(
+            By.XPATH,
+            "//div[@class='ub-emb-iframe-wrapper ub-emb-mobile ub-emb-visible']"
+            "//button[@type='button'][normalize-space()='×']")
+        driver.execute_script("arguments[0].click();", event_promo_pop_up)
+    except NoSuchElementException:
+        print("event promo pop-up does not exist, post_page_load_pop_up_mobile_ios")
+    try:
+        footer_xpath = driver.find_element(By.XPATH, "//button[text()='Accept']")
+        driver.execute_script("arguments[0].click();", footer_xpath)
+        assert driver.title == "21Ninety", "title does not match"
+    except NoSuchElementException:
+        print("footer pop-up does not exist")

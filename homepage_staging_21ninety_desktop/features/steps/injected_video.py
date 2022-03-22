@@ -12,6 +12,21 @@ def load_initial_article(driver):
     WebDriverWait(driver, 40).until(ec.title_is(title+" - 21Ninety"))
 
 
+def load_article_mobile(driver):
+    print("function called load_article_mobile")
+    initial_article = driver.find_element(
+        By.XPATH,
+        "(//div[@class='home-hero-article-card']//div[2]//a[1])[4]")
+    driver.execute_script("arguments[0].scrollIntoView();", initial_article)
+    # actions = ActionChains(driver)
+    # actions.move_to_element(article_heading).perform()
+    article = initial_article.get_attribute("title")
+    print("article is :", article)
+    temp_heading = article + " - 21Ninety"
+    driver.execute_script("arguments[0].click();", initial_article)
+    print("clicked on article heading")
+    WebDriverWait(driver, 20).until(ec.title_is(temp_heading))
+
 def verify_injected_video(driver):
     print("function called verify_injected_video")
     # wait till the time main video screen is available

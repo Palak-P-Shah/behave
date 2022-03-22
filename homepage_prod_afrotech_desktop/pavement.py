@@ -57,3 +57,17 @@ def run_video_injection_and_pic_in_pic(task_id=0):
         sh('SET CONFIG_FILE=config/%s.json & SET TASK_ID=%s & behave features/%s.feature' % ("injected_video_and_pic_in_pic", task_id, "injected_video_and_pic_in_pic"))
     else:
         sh('export CONFIG_FILE=config/%s.json && export TASK_ID=%s && behave features/%s.feature' % ("injected_video_and_pic_in_pic", task_id, "injected_video_and_pic_in_pic"))
+
+@task
+def run_video_injection_and_pic_in_pic_mobile_android(task_id=0):
+    if platform.system() == 'Windows':
+        sh('SET CONFIG_FILE=config/%s.json & SET TASK_ID=%s & behave features/%s.feature' % ("injected_video_android_chrome", task_id, "injected_video_android_chrome"))
+    else:
+        sh('export CONFIG_FILE=config/%s.json && export TASK_ID=%s && behave features/%s.feature' % ("injected_video_android_chrome", task_id, "injected_video_android_chrome"))
+
+@task
+def run_video_injection_and_pic_in_pic_mobile_ios(task_id=0):
+    if platform.system() == 'Windows':
+        sh('SET CONFIG_FILE=config/%s.json & SET TASK_ID=%s & behave features/%s.feature' % ("injected_video_ios_safari", task_id, "injected_video_ios_safari"))
+    else:
+        sh('export CONFIG_FILE=config/%s.json && export TASK_ID=%s && behave features/%s.feature' % ("injected_video_ios_safari", task_id, "injected_video_ios_safari"))

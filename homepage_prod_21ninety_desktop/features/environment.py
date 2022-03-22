@@ -25,6 +25,7 @@ BROWSERSTACK_USERNAME = os.environ['BROWSERSTACK_USERNAME'] if 'BROWSERSTACK_USE
 BROWSERSTACK_ACCESS_KEY = os.environ['BROWSERSTACK_ACCESS_KEY'] if 'BROWSERSTACK_ACCESS_KEY' in os.environ else CONFIG['key']
 BROWSERSTACK_BUILD_NAME = os.environ['BROWSERSTACK_BUILD_NAME'] if 'BROWSERSTACK_BUILD_NAME' in os.environ else CONFIG['build']
 
+
 def start_local():
     """Code to start browserstack local before start of test."""
     global bs_local

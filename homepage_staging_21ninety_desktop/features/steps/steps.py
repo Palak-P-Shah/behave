@@ -39,9 +39,24 @@ def step_impl(context):
     launch_browser_and_app(context.browser)
 
 
+@given('the chrome browser is launched and load the staging.21ninety.com app on mobile android')
+def step_impl(context):
+    launch_browser_and_app_mobile(context.browser)
+
+
+@given('the safari browser is launched and load the staging.21ninety.com app on mobile ios')
+def step_impl(context):
+    launch_browser_and_app_mobile(context.browser)
+
+
 @then('navigate to and load the initial article from carousel of the home page')
 def step_impl(context):
     load_initial_article(context.browser)
+
+
+@then('navigate to and load the article of the home page on mobile')
+def step_impl(context):
+    load_article_mobile(context.browser)
 
 
 @then('verify if the injected video is auto playing')
@@ -87,6 +102,16 @@ def step_impl(context):
 @then('verify the application is launched successfully')
 def step_impl(context):
     post_page_load_pop_up(context.browser)
+
+
+@then('verify on mobile the application is launched successfully')
+def step_impl(context):
+    post_page_load_pop_up_mobile(context.browser)
+
+
+@then('verify on ios mobile the application is launched successfully')
+def step_impl(context):
+    post_page_load_pop_up_mobile_ios(context.browser)
 
 
 @then('navigate to the Film page')
