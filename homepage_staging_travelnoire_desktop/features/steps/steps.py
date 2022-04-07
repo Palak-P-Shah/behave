@@ -39,6 +39,11 @@ def step_impl(context):
     launch_browser_and_app(context.browser)
 
 
+@given('the browser is launched and load the staging.travelnoire.com app on mobile')
+def step_impl(context):
+    launch_browser_and_app_mobile(context.browser)
+
+
 @then('navigate to and load the initial article from most popular section of the home page')
 def step_impl(context):
     load_initial_article_of_most_popular(context.browser)

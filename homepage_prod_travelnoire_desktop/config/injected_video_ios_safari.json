@@ -1,0 +1,25 @@
+{
+  "user": "palakshah_rcAxD5",
+  "key": "s2rqmyxFs8r999bzvGXJ",
+  "build_name": "behave-browserstack",
+  "build": "test build for injected video and pic in pic for travelnoire.com app on mobile safari ios",
+
+  "capabilities": {
+    "device": "iPhone 12",
+    "real_mobile": "true",
+    "os": "iOS",
+    "project": "Behave IOS Safari Project",
+    "os_version": "14",
+    "browserstack.local": "false",
+    "browserName": "safari",
+    "browser": "safari",
+    "browser_version": "latest",
+    "build": "test build for injected video and pic in pic for travelnoire.com app on mobile safari ios",
+    "name": "behave-browserstack",
+    "browserstack.debug": true
+  },
+
+  "environments": [{
+    "browser": "safari"
+     }]
+}

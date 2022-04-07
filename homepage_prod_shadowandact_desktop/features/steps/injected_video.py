@@ -16,11 +16,38 @@ def load_initial_article_of_most_popular(driver):
     WebDriverWait(driver, 40).until(ec.title_is(title+" - SHADOW & ACT"))
 
 
+def load_initial_article_of_most_popular_mobile(driver):
+    print("function called load_initial_article_of_most_popular")
+    try:
+        close_adv_img = driver.find_element(By.XPATH, "//img[@alt='close button']")
+        close_adv_img.click()
+    except NoSuchElementException:
+        print("footer adv not present")
+    WebDriverWait(driver, 40).until(ec.presence_of_element_located((
+        By.XPATH, "//div[@class='side-tabs']//ol//li[1]//a")))
+    initial_article = driver.find_element(
+        By.XPATH,
+        "//div[@class='side-tabs']//ol//li[1]//a")
+    actions = ActionChains(driver)
+    actions.move_to_element(initial_article).perform()
+    # connatix_player_close_btn = driver.find_element(
+    #     By.XPATH,
+    #     "//cnx[@class='cnx-ui-btn cnx-close-button']//cnx[@class='cnx-icon-button cnx-button-closebutton cnx-ui-btn-hoverable']")
+    # connatix_player_close_btn.click()
+    #driver.execute_script("arguments[0].scrollIntoView();", initial_article)
+    title = initial_article.get_attribute("title")
+    initial_article.click()
+    WebDriverWait(driver, 40).until(ec.presence_of_element_located((
+        By.XPATH, "html/head/title")))
+    WebDriverWait(driver, 40).until(ec.title_is(title+" - SHADOW & ACT"))
+
+
+
 def verify_injected_video(driver):
     print("function called verify_injected_video")
     # check for presence of video
     tmp_video_chk = driver.find_elements(By.XPATH, "(//div[@class='jwplayer image-wrapper image-wrapper--16x9'])[1]")
-    assert len(tmp_video_chk) > 0, "within afrotech.com , injected video is not present in this article :" + driver.title
+    assert len(tmp_video_chk) > 0, "within shadowandact.com , injected video is not present in this article :" + driver.title
     if len(tmp_video_chk) > 0:
         print("injected video is present")
     # wait till the time main video screen is available

@@ -1,0 +1,25 @@
+{
+  "user": "palakshah_rcAxD5",
+  "key": "s2rqmyxFs8r999bzvGXJ",
+  "build_name": "behave-browserstack",
+  "build": "test build for injected video and pic in pic for travelnoire.com app on mobile chrome android",
+
+  "capabilities": {
+    "os": "Android",
+    "os_version": "10.0",
+    "device": "Google Pixel 3",
+    "project": "Behave Android Chrome Project",
+    "real_mobile": "true",
+    "browserstack.local": "false",
+    "browserName": "Chrome",
+    "browser": "Chrome",
+    "browser_version": "latest",
+    "build": "test build for injected video and pic in pic for travelnoire.com app on mobile chrome android",
+    "name": "behave-browserstack",
+    "browserstack.debug": true
+  },
+
+  "environments": [{
+    "browser": "chrome"
+  }]
+}

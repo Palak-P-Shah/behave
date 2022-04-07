@@ -39,9 +39,24 @@ def step_impl(context):
     launch_browser_and_app(context.browser)
 
 
+@given('the chrome browser is launched and load the staging.shadowandact.com app on mobile android')
+def step_impl(context):
+    launch_browser_and_app_mobile(context.browser)
+
+
+@given('the safari browser is launched and load the staging.shadowandact.com app on mobile ios')
+def step_impl(context):
+    launch_browser_and_app_mobile(context.browser)
+
+
 @then('navigate to and load the initial article from most popular section of the home page')
 def step_impl(context):
     load_initial_article_of_most_popular(context.browser)
+
+
+@then('navigate to and load the initial article from most popular section of the home page on mobile')
+def step_impl(context):
+    load_initial_article_of_most_popular_mobile(context.browser)
 
 
 @then('verify if the injected video is auto playing')
@@ -87,6 +102,11 @@ def step_impl(context):
 @then('verify the application is launched successfully')
 def step_impl(context):
     post_page_load_pop_up(context.browser)
+
+
+@then('verify on mobile the application is launched successfully')
+def step_impl(context):
+    post_page_load_pop_up_mobile(context.browser)
 
 
 @then('navigate to the Film page')
